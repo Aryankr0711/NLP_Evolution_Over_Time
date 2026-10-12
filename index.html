@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NLP Architecture Evolution over Time</title>
+  <meta name="description" content="NLP Architecture Evolution over Time: RNN, LSTM, GRU, Seq2Seq, Attention, Transformers, BERT, T5, GPT-3, and Case Studies.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#070a12] text-slate-100 antialiased selection:bg-sky-500 selection:text-black">
+
+  <!-- Presentation Progress Bar -->
+  <div id="progressBar" class="presentation-progress" style="width: 7%;"></div>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-logo font-mono">NLP</div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="brand-title">NLP Architecture Evolution over Time</span>
+        </div>
+        <div class="text-[11px] text-slate-400 font-mono">From RNNs to Large Language Models</div>
+      </div>
+    </div>
+
+    <!-- Simplified Nav: Only Slides & Evolution Mindmap -->
+    <nav class="view-tabs" id="viewNavTabs">
+      <button class="view-tab active" data-view="slides" id="tabNavSlides">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+        <span class="font-semibold">Slides</span>
+      </button>
+      <button class="view-tab" data-view="mindmap" id="tabNavMindmap">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2z"/></svg>
+        <span class="font-semibold">Evolution Mindmap</span>
+      </button>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <button id="btnAutoPlay" class="icon-btn" title="Toggle Autoplay (A)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </button>
+      <button id="btnFullscreen" class="icon-btn" title="Toggle Fullscreen (F)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+      </button>
+      <button id="btnHelp" class="icon-btn" title="Keyboard Shortcuts (?)">
+        <span class="font-mono font-bold text-xs">?</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Presentation Stage -->
+  <main class="main-stage">
+    
+    <!-- 1. SLIDES VIEW -->
+    <div id="slidesView" class="slide-container">
+      <!-- Dynamic slide content populated by js/app.js -->
+    </div>
+
+    <!-- 2. BEAUTIFUL EVOLUTION MINDMAP VIEW -->
+    <div id="mindmapView" class="full-view-panel">
+      <div class="view-page-header text-center mb-6">
+        <span class="era-badge">INTERACTIVE ARCHITECTURAL MAP</span>
+        <h2 class="view-page-title mt-2">Evolution of Neural Language Models</h2>
+        <p class="view-page-desc max-w-2xl mx-auto">Click any node to jump directly to its dedicated slide presentation</p>
+      </div>
+
+      <div class="mindmap-canvas-container" id="mindmapContainer">
+        <!-- Visual Mindmap dynamically generated -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- App Bottom Navigation Footer -->
+  <footer class="app-footer">
+    <div class="nav-controls-group">
+      <button id="btnPrevSlide" class="nav-btn">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        <span>Previous</span>
+      </button>
+      <div class="slide-counter-display font-mono" id="slideCounterText">
+        Slide <span>01</span> / 14
+      </div>
+      <button id="btnNextSlide" class="nav-btn">
+        <span>Next</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- Thumbnail Scrubber Carousel -->
+    <div class="thumbnail-strip" id="thumbnailStrip"></div>
+
+    <!-- Keyboard Navigation Pills -->
+    <div class="hidden md:flex items-center gap-3 text-xs text-slate-400 font-mono">
+      <span><kbd class="kbd">←</kbd> <kbd class="kbd">→</kbd> Navigate</span>
+      <span><kbd class="kbd">Space</kbd> Next</span>
+      <span><kbd class="kbd">F</kbd> Fullscreen</span>
+    </div>
+  </footer>
+
+  <!-- High-Resolution Paper Snapshot Modal Lightbox -->
+  <div id="snapshotModal" class="modal-overlay">
+    <div class="modal-content-box">
+      <div class="modal-header">
+        <div>
+          <span id="modalPaperBadge" class="era-badge mr-2">ARCHITECTURE SNAPSHOT</span>
+          <span id="modalPaperTitle" class="modal-title font-heading">Model Architecture</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="modalToggleViewBtn" class="sim-btn">View Original Paper Page</button>
+          <a id="modalDoiLink" href="#" target="_blank" rel="noopener noreferrer" class="doi-link-btn">Open Paper DOI ↗</a>
+          <button id="modalCloseBtn" class="icon-btn font-bold text-lg">✕</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <img id="modalPreviewImg" src="" alt="High resolution architecture" class="modal-img-preview">
+      </div>
+      <div class="p-3 bg-slate-950 border-t border-slate-800 text-xs text-slate-400 text-center font-mono" id="modalImgCaption">
+        Architecture diagram for this model.
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Modal -->
+  <div id="shortcutsModal" class="modal-overlay">
+    <div class="modal-content-box max-w-md">
+      <div class="modal-header">
+        <span class="modal-title font-heading">Keyboard Shortcuts</span>
+        <button id="closeShortcutsBtn" class="icon-btn">✕</button>
+      </div>
+      <div class="p-5">
+        <div class="shortcuts-panel">
+          <div class="shortcut-row"><span>Next Slide</span> <kbd class="kbd">→</kbd> or <kbd class="kbd">Space</kbd></div>
+          <div class="shortcut-row"><span>Previous Slide</span> <kbd class="kbd">←</kbd></div>
+          <div class="shortcut-row"><span>First Slide</span> <kbd class="kbd">Home</kbd></div>
+          <div class="shortcut-row"><span>Last Slide</span> <kbd class="kbd">End</kbd></div>
+          <div class="shortcut-row"><span>Toggle Fullscreen</span> <kbd class="kbd">F</kbd></div>
+          <div class="shortcut-row"><span>Toggle Autoplay</span> <kbd class="kbd">A</kbd></div>
+          <div class="shortcut-row"><span>Slides View</span> <kbd class="kbd">1</kbd></div>
+          <div class="shortcut-row"><span>Evolution Mindmap</span> <kbd class="kbd">2</kbd></div>
+          <div class="shortcut-row"><span>Close Modal</span> <kbd class="kbd">Esc</kbd></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
